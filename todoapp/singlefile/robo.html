@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #todoForm{
+          display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    
+        <form id="todoForm">
+            <input type="text" id="todoInput" name="todo" required placeholder="username">
+            <input type="password" id="tad" required placeholder="password">
+            <button type="submit">sign up</button>
+        </form>
+         <form >
+            <input type="text" id="todeInput" name="todo" required placeholder="username">
+            <input type="password" id="tade" required placeholder="password">
+            <button id="signinBtn" type="submit">sign in</button>
+        </form>
+    <script>
+        document.getElementById('todoForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('todoInput').value;
+            const password = document.getElementById('tad').value;
+            try {
+                const response = await fetch("http://localhost:3000/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await response.text();
+                alert("Signup: " + data);
+            } catch (err) {
+                alert("Signup error: " + err);
+            }
+        });
+
+        document.querySelector('form:nth-of-type(2)').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('todeInput').value;
+            const password = document.getElementById('tade').value;
+            try {
+                const response = await fetch("http://localhost:3000/signin", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await response.text();
+                alert("Signin: " + data);
+            } catch (err) {
+                alert("Signin error: " + err);
+            }
+        });
+    </script>
+    
+</body>
+</html>
