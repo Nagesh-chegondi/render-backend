@@ -17,6 +17,8 @@ const { userModel, todoModel } = require('./db');
 
 // ✅ MongoDB connection string from env
 mongoose.connect("mongodb+srv://kantamani6227:PYDptQe9bILURACg@cluster0.6eug4oy.mongodb.net/blogiese")
+app.use(express.json());
+app.use(cors());
 
 // Signup
 app.post('/signup', async (req, res) => {
