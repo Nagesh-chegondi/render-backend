@@ -2,29 +2,21 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-require("dotenv").config();   // ✅ load .env
+
 
 const app = express();
 
 // ✅ Use environment variable for secret
-const JWT_SECRET = process.env.JWT_SECRET || "fallbacksecret";
+const JWT_SECRET = "ILOVESAMYUKTHA"
 
 // ✅ Port from Render/Heroku/etc.
-const port = process.env.PORT || 5000;
+const port = 5000
 
 // ✅ Import models
 const { userModel, todoModel } = require('./db');
 
 // ✅ MongoDB connection string from env
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ MongoDB connected"))
-.catch(err => console.error("❌ DB connection failed:", err));
-
-app.use(express.json());
-app.use(cors());
+mongoose.connect("mongodb+srv://kantamani6227:PYDptQe9bILURACg@cluster0.6eug4oy.mongodb.net/blogiese")
 
 // Signup
 app.post('/signup', async (req, res) => {
